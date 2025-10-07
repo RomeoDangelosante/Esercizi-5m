@@ -1,0 +1,28 @@
+```mermaid
+erDiagram 
+    Autori {
+        int id_autore PK "id autore"
+        str nome not null "nome autore"
+        str cognome not null "cognome autore"
+    }
+    Libri {
+        int id_libro PK "id del libro"
+        string titolo "Titolo del libro"
+        int id_autore FK "id autore"
+        int anno_pubblicazione "anno di pubblicazione"
+        str genere "genere del libro"
+    }
+    Prestiti {
+        int id_prestito PK "Identificador único del préstamo"
+        int id_libro FK "Identificador del libro prestado"
+        str utente "nome persona che fa prestito"
+        date data_prestito "data del prestito"
+        date data_restituzione "data di restituzione"
+    }
+    Autori ||--o{ Libri: "scrive"
+    Libri ||--o{ Prestiti: "è prestato in"      
+    Prestiti }|..|{ Libri: "può essere"
+    Autori }|..|{ Libri: "può scrivere"
+    Autori }|..|{ Prestiti: "può fare"
+    Libri }|..|{ Autori: "può essere scritto da"
+```
